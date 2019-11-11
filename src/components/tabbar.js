@@ -19,21 +19,28 @@ export default class Tabbar extends PureComponent {
         : 'rgba(255,255,255,0.6)';
     if (index === 0) {
       return (
-        <Image
-          style={[
-            {
-              tintColor: selectedColor,
-            },
-            styles.icon,
-          ]}
-          source={require('../assets/camera.png')}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate(route.key);
+          }}>
+          <Image
+            style={[
+              {
+                tintColor: selectedColor,
+              },
+              styles.icon,
+            ]}
+            source={require('../assets/camera.png')}
+          />
+        </TouchableOpacity>
       );
     }
     return (
       <TouchableOpacity
         style={{width: (width - 48) / 3}}
-        onPress={() => this.setState({index})}>
+        onPress={() => {
+          this.props.navigation.navigate(route.key);
+        }}>
         <Animated.Text
           style={[
             styles.tabText,
@@ -49,9 +56,27 @@ export default class Tabbar extends PureComponent {
 
   render() {
     const {position, navigationState} = this.props;
+    /** Tabbar transition hide/show */
     const translateY = Animated.interpolate(position, {
       inputRange: [0, 1, 2, 3],
       outputRange: [-1 * tabBarHeight, 0, 0, 0],
+    });
+
+    /** Indicator transition */
+    const indicatorTranslateX = Animated.interpolate(position, {
+      inputRange: [0, 1, 2, 3],
+      outputRange: [
+        0,
+        48,
+        48 + (width - 48) / 3,
+        48 + (width - 48) / 3 + (width - 48) / 3,
+      ],
+    });
+
+    /** Indicator width */
+    const indicatorWidth = Animated.interpolate(position, {
+      inputRange: [0, 1, 2, 3],
+      outputRange: [48, (width - 48) / 3, (width - 48) / 3, (width - 48) / 3],
     });
 
     return (
@@ -72,6 +97,15 @@ export default class Tabbar extends PureComponent {
               this.renderTab(route, index, navigationState),
             )}
           </View>
+          <Animated.View
+            style={[
+              styles.indicator,
+              {
+                width: indicatorWidth,
+                left: indicatorTranslateX,
+              },
+            ]}
+          />
         </View>
       </Animated.View>
     );
@@ -115,5 +149,11 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  indicator: {
+    height: 3,
+    backgroundColor: 'white',
+    elevation: 2,
+    top: 0,
   },
 });
