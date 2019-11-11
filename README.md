@@ -4,5 +4,12 @@
   </p>
   <h1 align="center">Watermelon Messenger</h1>
   <h3 align="center">Chat Application built using Watermelon DB.</h3>
+  
+  ## Build Status
+
+| Platform      | Build Status (Master)  |
+| ------------- |:-------------:|
+| Android       | [![Build status](https://build.appcenter.ms/v0.1/apps/15bb5577-2c69-4c96-82c0-908e2d7e82f4/branches/master/badge)](https://appcenter.ms) |
+| iOS           | [![Build status](https://build.appcenter.ms/v0.1/apps/04e9e7d7-6d2b-4d3d-ba23-b23344629212/branches/master/badge)](https://appcenter.ms)     |
 </p>
 
