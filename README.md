@@ -13,7 +13,7 @@
 | iOS           | [![Build status](https://build.appcenter.ms/v0.1/apps/04e9e7d7-6d2b-4d3d-ba23-b23344629212/branches/master/badge)](https://appcenter.ms)|
 
 ## Screenshots
-<h4 align="left">Chat Application built using React Navigation, Reanimatd & Gesture Handler.</h4>
+<h4 align="left">Chat Application built using React Navigation, Reanimated & Gesture Handler.</h4>
   <img height="720" src="https://user-images.githubusercontent.com/15869386/68726498-ab6f3e00-05e7-11ea-91cc-116efe5af4a3.gif" />
 
 </p>
