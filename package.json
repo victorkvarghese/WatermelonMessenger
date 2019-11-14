@@ -18,6 +18,7 @@
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.8",
     "react-native-tab-view": "^2.10.0",
+    "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
     "react-navigation-tabs": "^2.5.6"
   },
