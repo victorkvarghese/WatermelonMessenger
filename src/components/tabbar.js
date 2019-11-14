@@ -1,17 +1,14 @@
 import React, {PureComponent} from 'react';
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  Platform,
-} from 'react-native';
+import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {isIphoneX} from 'src/utils/isIphoneX';
 
-const tabBarHeight = isIphoneX() ? 128 : 100;
+const tabBarHeight = isIphoneX() ? 128 : 110;
+
+const fullWhite = 'rgba(255,255,255,1)';
+const dullWhite = 'rgba(255,255,255,0.6)';
 
 export default class Tabbar extends PureComponent {
   state = {
@@ -27,9 +24,7 @@ export default class Tabbar extends PureComponent {
   renderTab = (route, index, navigationState) => {
     const {desiredWidth} = this.state;
     const selectedColor =
-      navigationState.index === index
-        ? 'rgba(255,255,255,1)'
-        : 'rgba(255,255,255,0.6)';
+      navigationState.index === index ? fullWhite : dullWhite;
     if (index === 0) {
       return (
         <TouchableOpacity
@@ -70,6 +65,7 @@ export default class Tabbar extends PureComponent {
   render() {
     const {desiredWidth} = this.state;
     const {position, navigationState} = this.props;
+
     /** Tabbar transition hide/show */
     const translateY = Animated.interpolate(position, {
       inputRange: [0, 1, 2, 3],
@@ -134,8 +130,7 @@ const styles = StyleSheet.create({
   main: {flex: 1},
   header: {
     flex: 1,
-    justifyContent: Platform.OS === 'ios' ? 'flex-end' : 'center',
-    paddingTop: 12,
+    justifyContent: 'flex-end',
     paddingLeft: 12,
   },
   headerText: {
