@@ -8,11 +8,23 @@ import {
 } from 'react-native';
 import Animated from 'react-native-reanimated';
 
-const tabBarHeight = 110;
-const {width} = Dimensions.get('window');
+import {isIphoneX} from 'src/utils/isIphoneX';
+
+const tabBarHeight = isIphoneX() ? 130 : 110;
 
 export default class Tabbar extends PureComponent {
+  state = {
+    width: Dimensions.get('window').width,
+  };
+  componentDidMount() {
+    Dimensions.addEventListener('change', e => {
+      const {width} = e.window;
+      this.setState({width});
+    });
+  }
+
   renderTab = (route, index, navigationState) => {
+    const {width} = this.state;
     const selectedColor =
       navigationState.index === index
         ? 'rgba(255,255,255,1)'
@@ -55,6 +67,7 @@ export default class Tabbar extends PureComponent {
   };
 
   render() {
+    const {width} = this.state;
     const {position, navigationState} = this.props;
     /** Tabbar transition hide/show */
     const translateY = Animated.interpolate(position, {
@@ -90,7 +103,7 @@ export default class Tabbar extends PureComponent {
         ]}>
         <View style={styles.main}>
           <View style={styles.header}>
-            <Animated.Text style={styles.headerText}>WhatsApp</Animated.Text>
+            <Animated.Text style={styles.headerText}>Watermelon</Animated.Text>
           </View>
           <View style={styles.tab}>
             {navigationState.routes.map((route, index) =>
@@ -125,7 +138,7 @@ const styles = StyleSheet.create({
   main: {flex: 1},
   header: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     paddingTop: 12,
     paddingLeft: 12,
   },
