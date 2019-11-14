@@ -2,29 +2,30 @@ import React, {PureComponent} from 'react';
 import {
   View,
   TouchableOpacity,
-  Image,
   StyleSheet,
   Dimensions,
+  Platform,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {isIphoneX} from 'src/utils/isIphoneX';
 
-const tabBarHeight = isIphoneX() ? 130 : 110;
+const tabBarHeight = isIphoneX() ? 128 : 100;
 
 export default class Tabbar extends PureComponent {
   state = {
-    width: Dimensions.get('window').width,
+    desiredWidth: (Dimensions.get('window').width - 48) / 3,
   };
   componentDidMount() {
     Dimensions.addEventListener('change', e => {
       const {width} = e.window;
-      this.setState({width});
+      this.setState({desiredWidth: (width - 48) / 3});
     });
   }
 
   renderTab = (route, index, navigationState) => {
-    const {width} = this.state;
+    const {desiredWidth} = this.state;
     const selectedColor =
       navigationState.index === index
         ? 'rgba(255,255,255,1)'
@@ -32,24 +33,24 @@ export default class Tabbar extends PureComponent {
     if (index === 0) {
       return (
         <TouchableOpacity
+          key={index}
+          style={[styles.tabBtn, styles.camera]}
           onPress={() => {
             this.props.navigation.navigate(route.key);
           }}>
-          <Image
-            style={[
-              {
-                tintColor: selectedColor,
-              },
-              styles.icon,
-            ]}
-            source={require('../assets/camera.png')}
-          />
+          <Icon name="camera-alt" size={24} color="white" />
         </TouchableOpacity>
       );
     }
     return (
       <TouchableOpacity
-        style={{width: (width - 48) / 3}}
+        key={index}
+        style={[
+          styles.tabBtn,
+          {
+            width: desiredWidth,
+          },
+        ]}
         onPress={() => {
           this.props.navigation.navigate(route.key);
         }}>
@@ -67,7 +68,7 @@ export default class Tabbar extends PureComponent {
   };
 
   render() {
-    const {width} = this.state;
+    const {desiredWidth} = this.state;
     const {position, navigationState} = this.props;
     /** Tabbar transition hide/show */
     const translateY = Animated.interpolate(position, {
@@ -78,18 +79,13 @@ export default class Tabbar extends PureComponent {
     /** Indicator transition */
     const indicatorTranslateX = Animated.interpolate(position, {
       inputRange: [0, 1, 2, 3],
-      outputRange: [
-        0,
-        48,
-        48 + (width - 48) / 3,
-        48 + (width - 48) / 3 + (width - 48) / 3,
-      ],
+      outputRange: [0, 48, 48 + desiredWidth, 48 + desiredWidth + desiredWidth],
     });
 
     /** Indicator width */
     const indicatorWidth = Animated.interpolate(position, {
       inputRange: [0, 1, 2, 3],
-      outputRange: [48, (width - 48) / 3, (width - 48) / 3, (width - 48) / 3],
+      outputRange: [48, desiredWidth, desiredWidth, desiredWidth],
     });
 
     return (
@@ -138,7 +134,7 @@ const styles = StyleSheet.create({
   main: {flex: 1},
   header: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: Platform.OS === 'ios' ? 'flex-end' : 'center',
     paddingTop: 12,
     paddingLeft: 12,
   },
@@ -169,4 +165,6 @@ const styles = StyleSheet.create({
     elevation: 2,
     top: 0,
   },
+  tabBtn: {height: 50, justifyContent: 'center', alignItems: 'center'},
+  camera: {width: 48},
 });
