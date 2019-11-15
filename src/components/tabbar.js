@@ -34,7 +34,7 @@ export default class Tabbar extends PureComponent {
           onPress={() => {
             this.props.navigation.navigate(route.key);
           }}>
-          <Icon name="camera-alt" size={24} color="white" />
+          <Icon name="camera-alt" size={24} color={selectedColor} />
         </TouchableOpacity>
       );
     }
