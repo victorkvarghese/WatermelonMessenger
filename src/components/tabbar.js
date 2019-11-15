@@ -4,8 +4,9 @@ import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {isIphoneX} from 'src/utils/isIphoneX';
+import GeneralStatusBar from './status-bar';
 
-const tabBarHeight = isIphoneX() ? 128 : 110;
+const tabBarHeight = isIphoneX() ? 128 : 120;
 
 const fullWhite = 'rgba(255,255,255,1)';
 const dullWhite = 'rgba(255,255,255,0.6)';
@@ -94,6 +95,7 @@ export default class Tabbar extends PureComponent {
           },
         ]}>
         <View style={styles.main}>
+          <GeneralStatusBar backgroundColor="#075E54" />
           <View style={styles.header}>
             <Animated.Text style={styles.headerText}>Watermelon</Animated.Text>
           </View>

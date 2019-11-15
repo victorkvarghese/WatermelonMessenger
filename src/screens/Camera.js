@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, StatusBar} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import {withNavigationFocus} from 'react-navigation';
 
 class Camera extends Component {
   render() {
+    const {isFocused} = this.props;
+    if (isFocused) {
+      StatusBar.setHidden(true);
+    } else {
+      StatusBar.setHidden(false);
+    }
     return (
       <View
         style={{
@@ -12,7 +18,7 @@ class Camera extends Component {
           flexDirection: 'column',
           backgroundColor: 'black',
         }}>
-        {!this.props.isFocused ? null : (
+        {!isFocused ? null : (
           <RNCamera
             ref={ref => {
               this.camera = ref;

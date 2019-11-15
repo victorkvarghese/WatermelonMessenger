@@ -19,7 +19,6 @@
 		6D8FD26050AF7721F4FCEBC5 /* libPods-WatermelonMessenger.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFDA0390B1BDD2A7FE91FDE9 /* libPods-WatermelonMessenger.a */; };
 		83B69AFDC87B6B4E2015F2F5 /* libPods-WatermelonMessenger-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEE5E8BED2D9866AC196E2FD /* libPods-WatermelonMessenger-tvOSTests.a */; };
 		8ABC7E8A42247753C8E6AC3C /* libPods-WatermelonMessengerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 585A2B10443B001646E69389 /* libPods-WatermelonMessengerTests.a */; };
-		F44E3393237DA8D20074AD97 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F44E3392237DA8D20074AD97 /* MaterialIcons.ttf */; };
 		FE3704FF13AA3401A63C7E18 /* libPods-WatermelonMessenger-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43762A6DD76B2A932FD75B68 /* libPods-WatermelonMessenger-tvOS.a */; };
 /* End PBXBuildFile section */
 
@@ -349,7 +348,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				F44E3393237DA8D20074AD97 /* MaterialIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
