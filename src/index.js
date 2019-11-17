@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 
@@ -21,4 +21,10 @@ const Tabs = createMaterialTopTabNavigator(
   },
 );
 
-export default createAppContainer(Tabs);
+const AppContainer = createAppContainer(Tabs);
+
+export default class Entrypoint extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}

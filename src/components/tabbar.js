@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {isIphoneX} from 'src/utils/isIphoneX';
 import GeneralStatusBar from './status-bar';
+import WLText from './wl-text';
 
 const tabBarHeight = isIphoneX() ? 128 : 120;
 
@@ -50,15 +51,15 @@ export default class Tabbar extends PureComponent {
         onPress={() => {
           this.props.navigation.navigate(route.key);
         }}>
-        <Animated.Text
+        <WLText
           style={[
             styles.tabText,
             {
               color: selectedColor,
             },
-          ]}>
-          {route.key.toUpperCase()}
-        </Animated.Text>
+          ]}
+          value={route.key.toUpperCase()}
+        />
       </TouchableOpacity>
     );
   };
@@ -97,7 +98,7 @@ export default class Tabbar extends PureComponent {
         <View style={styles.main}>
           <GeneralStatusBar backgroundColor="#075E54" />
           <View style={styles.header}>
-            <Animated.Text style={styles.headerText}>Watermelon</Animated.Text>
+            <WLText style={styles.headerText} value="Watermelon" />
           </View>
           <View style={styles.tab}>
             {navigationState.routes.map((route, index) =>
