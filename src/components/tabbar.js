@@ -1,17 +1,13 @@
 import React, {PureComponent} from 'react';
-import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import Animated from 'react-native-reanimated';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Appbar, TouchableRipple} from 'react-native-paper';
+import {Appbar} from 'react-native-paper';
 
 import {isIphoneX} from 'src/utils/isIphoneX';
 import GeneralStatusBar from './status-bar';
-import WMText from './wm-text';
+import TabItem from './tab-item';
 
 const tabBarHeight = isIphoneX() ? 154 : 140;
-
-const fullWhite = 'rgba(255,255,255,1)';
-const dullWhite = 'rgba(255,255,255,0.6)';
 
 export default class Tabbar extends PureComponent {
   state = {
@@ -25,45 +21,15 @@ export default class Tabbar extends PureComponent {
   }
 
   renderTab = (route, index, navigationState) => {
-    const {desiredWidth} = this.state;
-    const selectedColor =
-      navigationState.index === index ? fullWhite : dullWhite;
-    if (index === 0) {
-      return (
-        <TouchableRipple
-          key={index}
-          style={[styles.tabBtn, styles.camera]}
-          onPress={() => {
-            this.props.navigation.navigate(route.key);
-          }}
-          rippleColor="rgba(0, 0, 0, .32)">
-          <Icon name="camera-alt" size={24} color={selectedColor} />
-        </TouchableRipple>
-      );
-    }
     return (
-      <TouchableRipple
+      <TabItem
+        index={index}
+        route={route}
         key={index}
-        style={[
-          styles.tabBtn,
-          {
-            width: desiredWidth,
-          },
-        ]}
-        onPress={() => {
-          this.props.navigation.navigate(route.key);
-        }}
-        rippleColor="rgba(0, 0, 0, .32)">
-        <WMText
-          style={[
-            styles.tabText,
-            {
-              color: selectedColor,
-            },
-          ]}
-          value={route.key.toUpperCase()}
-        />
-      </TouchableRipple>
+        navigationState={navigationState}
+        navigation={this.props.navigation}
+        desiredWidth={this.state.desiredWidth}
+      />
     );
   };
 
@@ -71,8 +37,8 @@ export default class Tabbar extends PureComponent {
     return (
       <Appbar.Header style={styles.header}>
         <Appbar.Content title="Watermelon" titleStyle={styles.headerText} />
-        <Appbar.Action icon="magnify" onPress={this._handleSearch} />
-        <Appbar.Action icon="dots-vertical" onPress={this._handleMore} />
+        <Appbar.Action icon="magnify" onPress={this.toggleSearch} />
+        <Appbar.Action icon="dots-vertical" onPress={this.handleMore} />
       </Appbar.Header>
     );
   };
@@ -104,16 +70,12 @@ export default class Tabbar extends PureComponent {
         style={[
           styles.container,
           {
-            // height: tabBarHeight,
             transform: [{translateY}],
           },
         ]}>
         <View style={styles.main}>
           <GeneralStatusBar backgroundColor="#075E54" />
-          {/* <View style={styles.header}>
-            <WMText style={styles.headerText} value="Watermelon" />
-          </View> */
-          this.renderHeader()}
+          {this.renderHeader()}
           <View style={styles.tab}>
             {navigationState.routes.map((route, index) =>
               this.renderTab(route, index, navigationState),
@@ -162,17 +124,10 @@ const styles = StyleSheet.create({
     height: 24,
     marginHorizontal: 12,
   },
-  tabText: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
   indicator: {
     height: 3,
     backgroundColor: 'white',
     elevation: 2,
     top: 0,
   },
-  tabBtn: {height: 50, justifyContent: 'center', alignItems: 'center'},
-  camera: {width: 48},
 });
