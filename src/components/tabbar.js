@@ -2,10 +2,11 @@ import React, {PureComponent} from 'react';
 import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Appbar} from 'react-native-paper';
 
 import {isIphoneX} from 'src/utils/isIphoneX';
 import GeneralStatusBar from './status-bar';
-import WLText from './wl-text';
+import WMText from './wm-text';
 
 const tabBarHeight = isIphoneX() ? 128 : 120;
 
@@ -51,7 +52,7 @@ export default class Tabbar extends PureComponent {
         onPress={() => {
           this.props.navigation.navigate(route.key);
         }}>
-        <WLText
+        <WMText
           style={[
             styles.tabText,
             {
@@ -61,6 +62,16 @@ export default class Tabbar extends PureComponent {
           value={route.key.toUpperCase()}
         />
       </TouchableOpacity>
+    );
+  };
+
+  renderHeader = () => {
+    return (
+      <Appbar.Header>
+        <Appbar.Content title="Watermelon" style={styles.headerText} />
+        <Appbar.Action icon="search" onPress={this._handleSearch} />
+        <Appbar.Action icon="more-vert" onPress={this._handleMore} />
+      </Appbar.Header>
     );
   };
 
@@ -97,9 +108,10 @@ export default class Tabbar extends PureComponent {
         ]}>
         <View style={styles.main}>
           <GeneralStatusBar backgroundColor="#075E54" />
-          <View style={styles.header}>
-            <WLText style={styles.headerText} value="Watermelon" />
-          </View>
+          {/* <View style={styles.header}>
+            <WMText style={styles.headerText} value="Watermelon" />
+          </View> */
+          this.renderHeader()}
           <View style={styles.tab}>
             {navigationState.routes.map((route, index) =>
               this.renderTab(route, index, navigationState),
