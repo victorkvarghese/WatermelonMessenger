@@ -8,7 +8,7 @@ import {isIphoneX} from 'src/utils/isIphoneX';
 import GeneralStatusBar from './status-bar';
 import WMText from './wm-text';
 
-const tabBarHeight = isIphoneX() ? 128 : 120;
+const tabBarHeight = isIphoneX() ? 154 : 148;
 
 const fullWhite = 'rgba(255,255,255,1)';
 const dullWhite = 'rgba(255,255,255,0.6)';
@@ -68,9 +68,9 @@ export default class Tabbar extends PureComponent {
   renderHeader = () => {
     return (
       <Appbar.Header>
-        <Appbar.Content title="Watermelon" style={styles.headerText} />
-        <Appbar.Action icon="search" onPress={this._handleSearch} />
-        <Appbar.Action icon="more-vert" onPress={this._handleMore} />
+        <Appbar.Content title="Watermelon" titleStyle={styles.headerText} />
+        <Appbar.Action icon="magnify" onPress={this._handleSearch} />
+        <Appbar.Action icon="dots-vertical" onPress={this._handleMore} />
       </Appbar.Header>
     );
   };
@@ -102,7 +102,7 @@ export default class Tabbar extends PureComponent {
         style={[
           styles.container,
           {
-            height: tabBarHeight,
+            // height: tabBarHeight,
             transform: [{translateY}],
           },
         ]}>

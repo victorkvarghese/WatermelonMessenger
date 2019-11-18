@@ -15,6 +15,7 @@
     "react-native": "0.61.4",
     "react-native-camera": "^3.9.0",
     "react-native-gesture-handler": "^1.5.0",
+    "react-native-paper": "^3.2.1",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.8",
     "react-native-tab-view": "^2.10.0",
