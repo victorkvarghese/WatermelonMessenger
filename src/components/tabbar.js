@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import {View, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import Animated from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Appbar} from 'react-native-paper';
+import {Appbar, TouchableRipple} from 'react-native-paper';
 
 import {isIphoneX} from 'src/utils/isIphoneX';
 import GeneralStatusBar from './status-bar';
@@ -30,18 +30,19 @@ export default class Tabbar extends PureComponent {
       navigationState.index === index ? fullWhite : dullWhite;
     if (index === 0) {
       return (
-        <TouchableOpacity
+        <TouchableRipple
           key={index}
           style={[styles.tabBtn, styles.camera]}
           onPress={() => {
             this.props.navigation.navigate(route.key);
-          }}>
+          }}
+          rippleColor="rgba(0, 0, 0, .32)">
           <Icon name="camera-alt" size={24} color={selectedColor} />
-        </TouchableOpacity>
+        </TouchableRipple>
       );
     }
     return (
-      <TouchableOpacity
+      <TouchableRipple
         key={index}
         style={[
           styles.tabBtn,
@@ -51,7 +52,8 @@ export default class Tabbar extends PureComponent {
         ]}
         onPress={() => {
           this.props.navigation.navigate(route.key);
-        }}>
+        }}
+        rippleColor="rgba(0, 0, 0, .32)">
         <WMText
           style={[
             styles.tabText,
@@ -61,7 +63,7 @@ export default class Tabbar extends PureComponent {
           ]}
           value={route.key.toUpperCase()}
         />
-      </TouchableOpacity>
+      </TouchableRipple>
     );
   };
 
