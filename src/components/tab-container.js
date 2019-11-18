@@ -12,6 +12,6 @@ export default class TabContainer extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: isIphoneX() ? 154 : 148,
+    paddingTop: isIphoneX() ? 154 : 140,
   },
 });
