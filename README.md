@@ -5,6 +5,10 @@
   <h1 align="center">Watermelon Messenger</h1>
   <h3 align="center">Chat Application built using Watermelon DB.</h3>
   
+  ## Related Articles
+  
+  https://medium.com/@victorvarghese/watermelon-messenger-1-tabbar-transitions-using-react-navigation-reanimated-gesture-handler-728d904da0b8
+  
   ## Build Status [WIP]
 
 | Platform      | Build Status (Master)  |
