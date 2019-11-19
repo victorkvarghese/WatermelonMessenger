@@ -15,7 +15,7 @@
 
 ## Screenshots
 <h4 align="left">Chat Application built using React Navigation, Reanimated & Gesture Handler, Firebase, WatermelonDB.</h4>
-  <img height="720" src="https://user-images.githubusercontent.com/15869386/68878818-5b4ec380-072e-11ea-8fc0-c532c79988b2.gif" />
+  <img height="720" src="https://user-images.githubusercontent.com/15869386/69168031-eb6c7e80-0b1b-11ea-9bed-92e74fb57936.gif" />
   
   
 
