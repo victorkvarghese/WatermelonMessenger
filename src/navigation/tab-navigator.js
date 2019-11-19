@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
   container: {flex: 1},
   fab: {
     position: 'absolute',
-    bottom: 48,
+    bottom: 32,
     right: 24,
   },
   editFab: {
     position: 'absolute',
-    bottom: 48 * 2 + 24,
+    bottom: 100,
     right: 32,
   },
 });
