@@ -9,6 +9,9 @@
   
   https://medium.com/@victorvarghese/watermelon-messenger-1-tabbar-transitions-using-react-navigation-reanimated-gesture-handler-728d904da0b8
   
+  ## Boilerplate
+  https://github.com/victorkvarghese/react-native-boilerplate
+  
   ## Build Status [WIP]
 
 | Platform      | Build Status (Master)  |
